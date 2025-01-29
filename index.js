@@ -9,7 +9,7 @@ document.getElementById('signature-form').addEventListener('submit', function(ev
 
     // Generiere die Signatur
     const signature = `
-        <div>
+        <div id="signature-content">
             <p><strong>${firstName} ${lastName}</strong></p>
             <p>${department}</p>
             <p>Telefon: ${phone}</p>
@@ -18,4 +18,15 @@ document.getElementById('signature-form').addEventListener('submit', function(ev
 
     // Ausgabe der Signatur
     document.getElementById('output').innerHTML = signature;
+});
+
+// Copy-Button Funktion
+document.getElementById('copy-button').addEventListener('click', function() {
+    let signatureText = document.getElementById('output').innerText;
+    
+    navigator.clipboard.writeText(signatureText).then(() => {
+        alert("Signatur kopiert!");
+    }).catch(err => {
+        console.error("Fehler beim Kopieren:", err);
+    });
 });
